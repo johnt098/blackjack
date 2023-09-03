@@ -1,0 +1,26 @@
+Black Jack Game
+
+Players: player, dealer
+
+player: 
+- player starts with 1000 dollars
+- player choose the amount of money they want to bet 
+- player is dealt 2 cards (dealer knows the both cards dealt)
+    SPECIAL CASE:
+    - if player has a blackjack, collects 1.5x the money put in 
+- player chooses to hit or not
+- if cards above 21, the user automatically lose
+- player can choose to withdraw if they do not want to play any more
+
+dealer:
+- dealer is dealt 2 cards (player knows first card dealt)
+    SPECIAL CASE:
+    - if dealer has a blackjack, collects player's money
+- dealer must stand if total is 17 or more 
+- dealer must hit if total is 16 or under 
+    SPECIAL CASE:
+    - if dealer has ace and counting it as 11 would make total 17 or more (but less than 21), dealer must count ace as 11 and stand
+- if dealer cards bigger than player, dealer wins
+- if dealer cards smaller than player, dealer hits
+- dealer loses
+

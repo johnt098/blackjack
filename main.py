@@ -15,7 +15,7 @@ DECK = ['Ace (Spades)', 'Ace (Hearts)', 'Ace (Diamonds)', 'Ace (Clubs)',
         'King (Spades)', 'King (Hearts)', 'King (Diamonds)', 'King (Clubs)']
 
 DECK_DICT = {
-    # 'Ace (Spades)':1, 'Ace (Hearts)':1, 'Ace (Diamonds)':1, 'Ace (Clubs)':1, 
+    'Ace (Spades)':1, 'Ace (Hearts)':1, 'Ace (Diamonds)':1, 'Ace (Clubs)':1, 
     '2 (Spades)':2, '2 (Hearts)':2, '2 (Diamonds)':2, '2 (Clubs)':2, 
     '3 (Spades)':3, '3 (Hearts)':3, '3 (Diamonds)':3, '3 (Clubs)':3, 
     '4 (Spades)':4, '4 (Hearts)':4, '4 (Diamonds)':4, '4 (Clubs)':4,
@@ -30,17 +30,20 @@ DECK_DICT = {
     'King (Spades)':10, 'King (Hearts)':10, 'King (Diamonds)':10, 'King (Clubs)':10
 }
 
+def get_deck(deck): #passed
+    return DECK.copy()
+
 def shuffle(deck): #passed
     '''Shuffle the deck'''
     np.random.shuffle(deck)
     return deck
 
-def pop(deck): 
-    '''Pop first element from deck'''
+def pop(deck): #passed
+    '''Pop first card from deck'''
     popped = deck.pop(0)
     return popped
 
-def initial_draw(deck, player, dealer): 
+def initial_draw(deck, player, dealer): #passed
     '''Initiate first round of draws'''
     dealer[0] = pop(deck)
     player.deck[0] = pop(deck)
@@ -48,23 +51,23 @@ def initial_draw(deck, player, dealer):
     player.deck[1] = pop(deck)
     return deck 
 
-def draw(deck, player): 
-    '''Draw a card for the player'''
-    player.deck.append(pop(deck))
-    return deck 
+def draw(deck, player_or_dealer): #passed
+    '''Draw a card for the player or dealer'''
+    if type(player_or_dealer) == Player:
+        player_or_dealer.deck.append(pop(deck))
+    else:
+        player_or_dealer.append(pop(deck))
 
-def card_name(card):
+def card_name(card): #passed
     '''Return the card name'''
-    return card[0]
+    return card.split(' ')[0]
 
-def ace_check(hand):
+def ace_check(hand): #passed
     '''Check if there is an ace in the hand'''
-    checker = False
     for card in hand:
         if card_name(card) == 'Ace':
-            checker = True
-            pass
-    return checker
+            return True
+    return False
 
 def hand_score(hand): #FIXME
     '''Return the score of the hand'''
